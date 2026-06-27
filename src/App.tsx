@@ -3,9 +3,11 @@ import {useState} from "react";
 import {Counter} from "./components/Counter/Counter.tsx";
 import {ButtonsContainer} from "./components/ButtonsContainer/ButtonsContainer.tsx";
 
-function App() {
-    let [counter, setCounter] = useState<number>(0)
+export const MAX_VALUE = 12
+export const MIN_VALUE = 3
 
+function App() {
+    const [counter, setCounter] = useState<number>(MIN_VALUE)
     return (
         <div className={s.app}>
             <div className={s.container}>

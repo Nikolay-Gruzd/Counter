@@ -1,5 +1,6 @@
 import s from './ButtonsContainer.module.css'
 import {Button} from "../Button/Button.tsx";
+import {MAX_VALUE, MIN_VALUE} from "../../App.tsx";
 
 type ButtonsContainerType = {
     counter: number
@@ -13,12 +14,12 @@ export const ButtonsContainer = ({counter, setCounter}: ButtonsContainerType) =>
         setCounter(inc)
     }
     const onClickButtonReset = () => {
-        setCounter(0)
+        setCounter(MIN_VALUE)
     }
     return (
         <div className={s.buttonsContainer}>
-            <Button name='inc' disabled={counter > 4} onClick={onClickButtonInc}/>
-            <Button name='reset' disabled={counter === 0} onClick={onClickButtonReset}/>
+            <Button name='inc' disabled={counter >= MAX_VALUE} onClick={onClickButtonInc}/>
+            <Button name='reset' disabled={counter === MIN_VALUE} onClick={onClickButtonReset}/>
         </div>
     )
 }
