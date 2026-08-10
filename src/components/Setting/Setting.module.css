@@ -1,0 +1,30 @@
+.setting {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #45e0fb;
+    border: solid 2px #45e0fb;
+    border-radius: 5px;
+    padding: 25px 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    text-align: center;
+    width: 150px;
+    height: 30px;
+    border: solid 2px #45e0fb;
+    border-radius: 3px;
+}
+
+.error{
+    border: solid 2px red;
+    background-color: #fd6868;
+}
