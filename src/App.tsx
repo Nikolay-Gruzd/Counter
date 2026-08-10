@@ -11,6 +11,9 @@ function App() {
     return (
         <div className={s.app}>
             <div className={s.container}>
+
+            </div>
+            <div className={s.container}>
                 <Counter counter={counter}/>
                 <ButtonsContainer counter={counter} setCounter={setCounter}/>
             </div>
