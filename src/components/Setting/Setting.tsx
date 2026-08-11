@@ -4,17 +4,20 @@ import {ChangeEvent} from "react";
 
 interface SettingProps {
     setting: SettingType,
-    setSetting: (value: SettingType) => void
-    setCounter: (value: number) => void
-    setError: (value: string) => void
+    setSetting: (value: SettingType) => void,
+    setCounter: (value: number) => void,
+    setError: (value: string) => void,
+    localValue?: SettingType
 }
 
-export const Setting = ({setting, setSetting, setCounter, setError}: SettingProps) => {
+export const Setting = ({setting, setSetting, setCounter, setError,localValue}: SettingProps) => {
 
     const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.currentTarget.value)
         if (value < 0 || value === setting.start || value < setting.start) {
             setError('incorrect value!')
+        } else if (value === localValue?.max) {
+            setError('')
         } else {
             setError(`Enter values and press 'set'`)
         }
@@ -24,9 +27,12 @@ export const Setting = ({setting, setSetting, setCounter, setError}: SettingProp
         const value = Number(e.currentTarget.value)
         if (value < 0 || value === setting.max || value > setting.max) {
             setError('incorrect value!')
+        } else if (value === localValue?.start) {
+            setError('')
         } else {
             setError(`Enter values and press 'set'`)
         }
+
         setSetting({...setting, start: value})
         setCounter(value)
     }

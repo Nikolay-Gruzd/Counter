@@ -1,30 +1,33 @@
 import s from './ButtonsContainer.module.css'
 import {Button} from "../Button/Button.tsx";
-import {MAX_VALUE, MIN_VALUE, SettingType} from "../../App.tsx";
+import {SettingType} from "../../App.tsx";
 
 type ButtonsContainerType = {
-    counter?: number
-    setCounter?: (value: number) => void
-    modeSetting?: boolean
-    setting: SettingType
+    counter?: number,
+    setCounter?: (value: number) => void,
+    modeSetting?: boolean,
+    setting: SettingType,
+    localValue?: SettingType,
+    setLocalValue?: (value: SettingType) => void,
+    error?: string,
+    setError?: (error: string) => void,
 }
 
-export const ButtonsContainer = ({counter, setCounter, modeSetting, setting}: ButtonsContainerType) => {
-    if (modeSetting) {
-        const disabledButton =
-            setting.start === MIN_VALUE
-            && setting.max === MAX_VALUE
-            || setting.start < 0
-            || setting.max < 0
-            || setting.start > setting.max
-            || setting.start === setting.max
-        return (
-            <div className={s.buttonsContainer}>
-                <Button name='set' disabled={disabledButton} onClick={() => {}}/>
-            </div>
-        )
-    }
+export const ButtonsContainer = ({
+                                     counter,
+                                     setCounter,
+                                     modeSetting,
+                                     setting,
+                                     setLocalValue,
+                                     localValue,
+                                     error,
+                                     setError
+                                 }: ButtonsContainerType) => {
 
+    const getFromLocalHandler = () => {
+        setLocalValue?.({max: setting.max, start: setting.start})
+        setError?.('')
+    }
     const onClickButtonInc = () => {
         counter !== undefined && setCounter?.(counter + 1)
     }
@@ -33,10 +36,28 @@ export const ButtonsContainer = ({counter, setCounter, modeSetting, setting}: Bu
     }
 
     const incDisabledValue = counter === undefined
-        || counter === setting.max || setting.start !== MIN_VALUE || setting.max !== MAX_VALUE
+        || counter === setting.max
+        || setting.start === setting.max
+        || !!error
 
-    const resetDisabledValue = counter === undefined
-        || counter === setting.start || setting.start !== MIN_VALUE || setting.max !== MAX_VALUE
+    const resetDisabledValue =
+        counter === setting.start
+        || !!error
+
+    if (modeSetting) {
+        const disabledButton =
+            setting.start === localValue?.start
+            && setting.max === localValue?.max
+            || setting.start < 0
+            || setting.max < 0
+            || setting.start > setting.max
+            || setting.start === setting.max
+        return (
+            <div className={s.buttonsContainer}>
+                <Button name='set' disabled={disabledButton} onClick={getFromLocalHandler}/>
+            </div>
+        )
+    }
 
     return (
         <div className={s.buttonsContainer}>

@@ -1,12 +1,13 @@
 import s from './Counter.module.css'
-import {MAX_VALUE, MIN_VALUE, SettingType} from "../../App.tsx";
+import {SettingType} from "../../App.tsx";
 
 type CounterType = {
     counter: number,
     setting: SettingType,
-    error: string
+    error: string,
+    localValue?: SettingType
 }
-export const Counter = ({counter, setting, error}: CounterType) => {
+export const Counter = ({counter, setting, error, localValue}: CounterType) => {
 
     const styleError = (setting.start < 0)
         ? s.error
@@ -21,7 +22,7 @@ export const Counter = ({counter, setting, error}: CounterType) => {
             ${s.counterContainer}
             ${counter === setting.max ? s.limitCounter : null}
         `}>
-            {setting.start === MIN_VALUE && setting.max === MAX_VALUE
+            {setting.start === localValue?.start && setting.max === localValue.max
                 ? counter
                 : <span className={styleError}>{error}</span>}
         </div>
