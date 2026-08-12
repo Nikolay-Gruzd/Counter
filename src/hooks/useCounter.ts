@@ -1,5 +1,7 @@
 import {SettingType} from "../App.tsx";
 import {useState} from "react";
+import {isSettingValid} from "../utils/helpers.ts";
+import {ERROR_MESSAGES} from "../constants";
 
 export const useCounter = (initialValue: SettingType) => {
     // Все состояния в одном месте
@@ -9,6 +11,10 @@ export const useCounter = (initialValue: SettingType) => {
 
     // Логика инкремента
     const increment = () => {
+        if(!isSettingValid(setting)) {
+            setError(ERROR_MESSAGES.INCORRECT)
+            return
+        }
         if (counter < setting.max) {
             setCounter(counter => counter + 1)
             setError('')
@@ -17,6 +23,10 @@ export const useCounter = (initialValue: SettingType) => {
 
     // Логика ресета
     const reset = () => {
+        if(!isSettingValid(setting)) {
+            setError(ERROR_MESSAGES.INCORRECT)
+            return
+        }
         setCounter(setting.start)
         setError('')
     }
