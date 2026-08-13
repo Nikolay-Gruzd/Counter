@@ -1,4 +1,4 @@
-import {SettingType} from "../App.tsx";
+import {SettingType} from "../components/Setting/Setting.tsx";
 
 export const useValidation = (setting: SettingType) => {
     // вычисляем все возможные ошибки

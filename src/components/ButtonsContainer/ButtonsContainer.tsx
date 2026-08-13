@@ -1,6 +1,6 @@
 import s from './ButtonsContainer.module.css'
 import {Button} from "../Button/Button.tsx";
-import {SettingType} from "../../App.tsx";
+import {SettingType} from "../Setting/Setting.tsx";
 
 type ButtonsContainerType = {
     counter?: number,

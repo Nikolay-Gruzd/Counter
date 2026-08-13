@@ -1,6 +1,7 @@
-import {SettingType} from "../App.tsx";
 
 // Проверка валидности
+import {SettingType} from "../components/Setting/Setting.tsx";
+
 export const isSettingValid = (setting: SettingType): boolean => {
     return setting.start >= 0 && setting.max >=1 && setting.start < setting.max
 }

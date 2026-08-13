@@ -6,11 +6,6 @@ import {useLocalStorage} from "./hooks/useLocalStorage.ts";
 import {DEFAULT_SETTINGS, STORAGE_KEY} from "./constants";
 import {useCounter} from "./hooks/useCounter.ts";
 
-export type SettingType = {
-    max: number,
-    start: number
-}
-
 function App() {
 
     const { localValue, setLocalValue } = useLocalStorage(STORAGE_KEY, DEFAULT_SETTINGS)
@@ -23,25 +18,6 @@ function App() {
         setting,
         setSetting
     } = useCounter(localValue)
-
-    // const [localValue, setLocalValue] = useState<SettingType>({max: 5, start: 0})
-    //
-    // const [setting, setSetting] = useState<SettingType>({max: localValue.max, start: localValue.start})
-    // const [counter, setCounter] = useState<number>(localValue.start)
-    // const [error, setError] = useState<string>('')
-    //
-    // useEffect(() => {
-    //     let valueAssString = localStorage.getItem('counterValue')
-    //     if (valueAssString) {
-    //         let newValue = JSON.parse(valueAssString)
-    //         setLocalValue(newValue)
-    //         setSetting(newValue)
-    //         setCounter(newValue.start)
-    //     }
-    // }, [])
-    // useEffect(() => {
-    //     localStorage.setItem('counterValue', JSON.stringify(localValue))
-    // }, [localValue])
 
     return (
         <div className={s.app}>

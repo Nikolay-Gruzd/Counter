@@ -1,5 +1,5 @@
 import s from './Counter.module.css'
-import {SettingType} from "../../App.tsx";
+import {SettingType} from "../Setting/Setting.tsx";
 
 type CounterType = {
     counter: number,
@@ -20,7 +20,7 @@ export const Counter = ({counter, setting, error, localValue}: CounterType) => {
     return (
         <div className={`
             ${s.counterContainer}
-            ${counter === setting.max ? s.limitCounter : null}
+            ${counter === setting.max ? s.limitCounter : ''}
         `}>
             {setting.start === localValue?.start && setting.max === localValue.max
                 ? counter
