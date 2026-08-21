@@ -1,38 +1,49 @@
 import s from './ButtonsContainer.module.css'
 import {Button} from "../Button/Button.tsx";
 import {SettingType} from "../Setting/Setting.tsx";
+import {setErrorAC} from "../../model/error-reducer.ts";
+import {AppDispatch} from "../../app/store.ts";
+import {counterIncrementAC} from "../../model/counter-reducer.ts";
+import {changeSettingAC} from "../../model/setting-reducer.ts";
 
 type ButtonsContainerType = {
     counter?: number,
-    setCounter?: (value: number) => void,
+    dispatch?: AppDispatch,
     modeSetting?: boolean,
     setting: SettingType,
     localValue?: SettingType,
     setLocalValue?: (value: SettingType) => void,
     error?: string,
-    setError?: (error: string) => void,
 }
 
 export const ButtonsContainer = ({
                                      counter,
-                                     setCounter,
                                      modeSetting,
                                      setting,
                                      setLocalValue,
                                      localValue,
                                      error,
-                                     setError
+                                     dispatch
                                  }: ButtonsContainerType) => {
 
+    debugger
     const getFromLocalHandler = () => {
+        debugger
+        // setError?.('')
+        dispatch?.(changeSettingAC({max: setting.max, start: setting.start}))
+        dispatch?.(setErrorAC({error: ''}))
         setLocalValue?.({max: setting.max, start: setting.start})
-        setError?.('')
     }
     const onClickButtonInc = () => {
-        counter !== undefined && setCounter?.(counter + 1)
+        debugger
+        if (counter !== undefined) {
+            setLocalValue?.({...setting, start: counter + 1})
+            dispatch?.(counterIncrementAC({value: counter + 1})) //setCounter?.(counter + 1)
+        }
     }
     const onClickButtonReset = () => {
-        setCounter?.(setting.start)
+        // setCounter?.(setting.start)
+        dispatch?.(counterIncrementAC({value: setting.start}))
     }
 
     const incDisabledValue = counter === undefined

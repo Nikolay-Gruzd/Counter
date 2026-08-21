@@ -8,7 +8,7 @@ type CounterType = {
     localValue?: SettingType
 }
 export const Counter = ({counter, setting, error, localValue}: CounterType) => {
-
+debugger
     const styleError = (setting.start < 0)
         ? s.error
         : (setting.max < 0)
