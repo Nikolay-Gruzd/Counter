@@ -1,5 +1,5 @@
 import s from './Setting.module.css'
-import {useValidation} from "../../hooks/useValidation.ts";
+import {useValidation} from "../../common/hooks/useValidation.ts";
 import {ChangeEvent} from "react";
 import {ERROR_MESSAGES} from "../../constants";
 

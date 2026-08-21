@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {SettingType} from "../components/Setting/Setting.tsx";
+import {SettingType} from "../../components/Setting/Setting.tsx";
 
 export const useLocalStorage = (key: string, initialValue: SettingType) => {
     // Ленивая инициализация - вызывается только 1 раз

@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {isSettingValid} from "../utils/helpers.ts";
-import {ERROR_MESSAGES} from "../constants";
-import {SettingType} from "../components/Setting/Setting.tsx";
+import {isSettingValid} from "../../utils/helpers.ts";
+import {ERROR_MESSAGES} from "../../constants";
+import {SettingType} from "../../components/Setting/Setting.tsx";
 
 export const useCounter = (initialValue: SettingType) => {
     // Все состояния в одном месте

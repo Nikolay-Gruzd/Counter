@@ -1,10 +1,10 @@
 import s from './App.module.css'
-import {Counter} from "./components/Counter/Counter.tsx";
-import {ButtonsContainer} from "./components/ButtonsContainer/ButtonsContainer.tsx";
-import {Setting} from "./components/Setting/Setting.tsx";
-import {useLocalStorage} from "./hooks/useLocalStorage.ts";
-import {DEFAULT_SETTINGS, STORAGE_KEY} from "./constants";
-import {useCounter} from "./hooks/useCounter.ts";
+import {Counter} from "../components/Counter/Counter.tsx";
+import {ButtonsContainer} from "../components/ButtonsContainer/ButtonsContainer.tsx";
+import {Setting} from "../components/Setting/Setting.tsx";
+import {useLocalStorage} from "../common/hooks/useLocalStorage.ts";
+import {DEFAULT_SETTINGS, STORAGE_KEY} from "../constants";
+import {useCounter} from "../common/hooks/useCounter.ts";
 
 function App() {
 
